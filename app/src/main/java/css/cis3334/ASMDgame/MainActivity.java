@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity
      */
     private ViewPager mViewPager;
 
-    public int timer = 10;
-    public int score = 0;
+    public static int timer = 10;
+    public static int score = -1;
+    public int currentNum = 50;  //Randomize me later
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        initialize(score);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +62,13 @@ public class MainActivity extends AppCompatActivity
             }
         });*/
 
+    }
+
+    public void initialize(int score) {
+        score++;
+        timer = 10;
+
+        currentNum = 20;
     }
 
 

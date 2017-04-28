@@ -45,11 +45,11 @@
                 android:textSize="36sp" />
 
             <TextView
-                android:id="@+id/textViewModifyer"
+                android:id="@+id/textViewModifier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Modifyer:   "
+                android:text="Modifier:   "
                 android:textSize="36sp" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:textSize="36sp" />
 
             <TextView
-                android:id="@+id/textViewModifyerNum"
+                android:id="@+id/textViewModifierNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="--"
@@ -105,7 +105,7 @@
             android:textSize="32sp" />
 
         <Button
-            android:id="@+id/buttonMath"
+            android:id="@+id/buttonSubtract"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:layout_weight="1"

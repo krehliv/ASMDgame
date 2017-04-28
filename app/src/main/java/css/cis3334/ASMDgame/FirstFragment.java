@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -29,6 +30,11 @@ public class FirstFragment extends Fragment {
     private String mParam2;
 
     private TextView textViewCurrentNum;
+    private TextView textViewModifierNum;
+    private TextView textViewTimeNum;
+    private TextView textViewScoreNum;
+    private Button buttonAdd;
+    private int timerSet;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,7 +66,6 @@ public class FirstFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
     }
 
@@ -68,7 +73,33 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        View inflation = inflater.inflate(R.layout.fragment_first, container, false);
+
+        textViewCurrentNum = (TextView) inflation.findViewById(R.id.textViewCurrentNum);
+        textViewModifierNum = (TextView) inflation.findViewById(R.id.textViewModifierNum);
+        textViewTimeNum = (TextView) inflation.findViewById(R.id.textViewTimeNum);
+        textViewScoreNum = (TextView) inflation.findViewById(R.id.textViewScoreNum);
+        buttonAdd = (Button) inflation.findViewById(R.id.buttonAdd);
+
+        timerSet = MainActivity.timer;
+        textViewScoreNum.setText(MainActivity.score);
+        textViewTimeNum.setText(timerSet); //TODO
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                MainActivity.timer--;
+                timerSet--;
+
+                int modifier = Integer.parseInt(textViewModifierNum.getText().toString());
+                int current = Integer.parseInt(textViewCurrentNum.getText().toString());
+
+                current = current + modifier;
+
+                textViewTimeNum.setText(timerSet);
+                textViewCurrentNum.setText(current);
+            }
+        });
+        return inflation;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,6 +107,11 @@ public class FirstFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragment1Interaction(uri);
         }
+    }
+
+    //on button push
+    public void onAddButtonClick(View view) {
+
     }
 
     @Override
