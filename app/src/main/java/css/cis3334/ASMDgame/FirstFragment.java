@@ -33,10 +33,8 @@ public class FirstFragment extends Fragment {
     private TextView textViewModifierNum;
     private TextView textViewTimeNum;
     private TextView textViewScoreNum;
+    private TextView textViewGoalNum;
     private Button buttonAdd;
-    private String timerSet;
-    private String scoreSet;
-    private String currentSet;
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,28 +79,55 @@ public class FirstFragment extends Fragment {
         textViewModifierNum = (TextView) inflation.findViewById(R.id.textViewModifierNum);
         textViewTimeNum = (TextView) inflation.findViewById(R.id.textViewTimeNum);
         textViewScoreNum = (TextView) inflation.findViewById(R.id.textViewScoreNum);
+        textViewGoalNum = (TextView) inflation.findViewById(R.id.textViewGoalNum);
         buttonAdd = (Button) inflation.findViewById(R.id.buttonAdd);
 
-        scoreSet = Integer.toString(MainActivity.score);
+/*        scoreSet = Integer.toString(MainActivity.score);
         timerSet = Integer.toString((MainActivity.timer));
         currentSet = Integer.toString((MainActivity.currentNum));
-        textViewScoreNum.setText(scoreSet);
-        textViewTimeNum.setText(timerSet);
-        textViewCurrentNum.setText(currentSet);
+        goalSet = Integer.toString((MainActivity.goal));*/
+
+        textViewScoreNum.setText(Integer.toString(MainActivity.score));
+        textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+        textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+        textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+        textViewModifierNum.setText(Integer.toString(MainActivity.addMod));
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 MainActivity.timer--;
-                timerSet = Integer.toString((MainActivity.timer));
 
                 int modifier = Integer.parseInt(textViewModifierNum.getText().toString());
                 int current = Integer.parseInt(textViewCurrentNum.getText().toString());
+                int goal = Integer.parseInt(textViewGoalNum.getText().toString());
 
                 current = current + modifier;
                 MainActivity.currentNum = current;
 
-                textViewTimeNum.setText(timerSet);
+                textViewTimeNum.setText(Integer.toString((MainActivity.timer)));
                 textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+
+                if (current == goal) {
+                    textViewTimeNum.setText(Integer.toString(10));
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score + 1));
+                    MainActivity.newGame();
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+                    textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+                    textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+                    textViewModifierNum.setText(Integer.toString(MainActivity.addMod));
+                }
+                if (MainActivity.timer < 0) {
+                    textViewTimeNum.setText(Integer.toString(10));
+                    MainActivity.score = -1;
+                    MainActivity.newGame();
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+                    textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+                    textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+                    textViewModifierNum.setText(Integer.toString(MainActivity.addMod));
+                }
+
             }
         });
         return inflation;

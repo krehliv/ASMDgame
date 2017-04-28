@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class MainActivity extends AppCompatActivity
         implements FirstFragment.OnFragmentInteractionListener,
         SecondFragment.OnFragmentInteractionListener,
@@ -35,13 +37,19 @@ public class MainActivity extends AppCompatActivity
     public static int timer = -1;
     public static int score = -1;
     public static int currentNum = -1;
+    public static int goal = -1;
+
+    public static int addMod = -1;
+    public static int subtractMod = -1;
+    public static int multiplyMod = -1;
+    public static int divideMod = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initialize(score);
+        newGame();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,11 +74,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void initialize(int score) {
+    public static void newGame() {
         score++;
         timer = 10;
 
-        currentNum = 20;//Randomize me later
+        goal = ThreadLocalRandom.current().nextInt(35, 40); //random num between 20 and 60
+        currentNum = ThreadLocalRandom.current().nextInt(40, 50); //random num between 10 and 40
+
+        addMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
+        subtractMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
+        multiplyMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
+        divideMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
     }
 
 
