@@ -34,7 +34,9 @@ public class FirstFragment extends Fragment {
     private TextView textViewTimeNum;
     private TextView textViewScoreNum;
     private Button buttonAdd;
-    private int timerSet;
+    private String timerSet;
+    private String scoreSet;
+    private String currentSet;
 
     private OnFragmentInteractionListener mListener;
 
@@ -81,22 +83,26 @@ public class FirstFragment extends Fragment {
         textViewScoreNum = (TextView) inflation.findViewById(R.id.textViewScoreNum);
         buttonAdd = (Button) inflation.findViewById(R.id.buttonAdd);
 
-        timerSet = MainActivity.timer;
-        textViewScoreNum.setText(MainActivity.score);
-        textViewTimeNum.setText(timerSet); //TODO
+        scoreSet = Integer.toString(MainActivity.score);
+        timerSet = Integer.toString((MainActivity.timer));
+        currentSet = Integer.toString((MainActivity.currentNum));
+        textViewScoreNum.setText(scoreSet);
+        textViewTimeNum.setText(timerSet);
+        textViewCurrentNum.setText(currentSet);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 MainActivity.timer--;
-                timerSet--;
+                timerSet = Integer.toString((MainActivity.timer));
 
                 int modifier = Integer.parseInt(textViewModifierNum.getText().toString());
                 int current = Integer.parseInt(textViewCurrentNum.getText().toString());
 
                 current = current + modifier;
+                MainActivity.currentNum = current;
 
                 textViewTimeNum.setText(timerSet);
-                textViewCurrentNum.setText(current);
+                textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
             }
         });
         return inflation;

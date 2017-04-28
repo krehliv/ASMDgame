@@ -32,14 +32,16 @@ public class MainActivity extends AppCompatActivity
      */
     private ViewPager mViewPager;
 
-    public static int timer = 10;
+    public static int timer = -1;
     public static int score = -1;
-    public int currentNum = 50;  //Randomize me later
+    public static int currentNum = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initialize(score);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        initialize(score);
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         score++;
         timer = 10;
 
-        currentNum = 20;
+        currentNum = 20;//Randomize me later
     }
 
 
