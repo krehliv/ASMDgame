@@ -1,4 +1,4 @@
-package css.cis3334.tabbedexample2017;
+package css.cis3334.asmdgame;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

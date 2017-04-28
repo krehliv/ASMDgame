@@ -1,8 +1,6 @@
-package css.cis3334.tabbedexample2017;
+package css.cis3334.asmdgame;
 
 import android.net.Uri;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,18 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements FirstFragment.OnFragmentInteractionListener,
         SecondFragment.OnFragmentInteractionListener,
-        ThirdFragment.OnFragmentInteractionListener
+        ThirdFragment.OnFragmentInteractionListener,
+        FourthFragment.OnFragmentInteractionListener
 {
 
     /**
@@ -40,6 +32,9 @@ public class MainActivity extends AppCompatActivity
      */
     private ViewPager mViewPager;
 
+    public int timer = 10;
+    public int score = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +51,19 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -88,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onFragment1Interaction(Uri uri) {
@@ -100,6 +95,10 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public void onFragment3Interaction(Uri uri) {
+        // Do stuff
+    }
+    @Override
+    public void onFragment4Interaction(Uri uri) {
         // Do stuff
     }
 
@@ -129,13 +128,16 @@ public class MainActivity extends AppCompatActivity
             if (position == 2 ){
                 return ThirdFragment.newInstance("This", "That");
             }
+            if (position == 3 ){
+                return FourthFragment.newInstance("This", "That");
+            }
             return null;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
@@ -147,6 +149,8 @@ public class MainActivity extends AppCompatActivity
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
             }
             return null;
         }

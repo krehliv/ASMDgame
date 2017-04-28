@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">Tabbed Example 2017</string>
+    <string name="app_name">ASMD Game</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_first_fragment">First fragment</string>
-    <string name="hello_second_fragment">Second fragment</string>
-    <string name="hello_third_fragment">Third fragment</string>
+    <string name="hello_first_fragment">Addition</string>
+    <string name="hello_second_fragment">Subtraction</string>
+    <string name="hello_third_fragment">Multiplication</string>
+    <string name="hello_fourth_fragment">Division</string>
+
+
 </resources>

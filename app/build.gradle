@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "css.cis3334.tabbedexample2017"
+        applicationId "css.cis3334.asmdgame"
         minSdkVersion 22
         targetSdkVersion 23
         versionCode 1

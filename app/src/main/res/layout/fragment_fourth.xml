@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    tools:context="css.cis3334.asmdgame.SecondFragment">
+    tools:context="css.cis3334.asmdgame.FourthFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,7 +12,7 @@
         android:id="@+id/textViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_second_fragment"
+        android:text="@string/hello_fourth_fragment"
         android:textAlignment="center"
         android:textSize="48sp" />
 
@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:layout_weight="1"
-            android:text="SUBTRACT"
+            android:text="DIVIDE"
             android:textSize="42sp" />
 
         <TextView

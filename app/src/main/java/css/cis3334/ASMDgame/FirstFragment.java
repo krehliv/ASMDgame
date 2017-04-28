@@ -1,4 +1,4 @@
-package css.cis3334.tabbedexample2017;
+package css.cis3334.asmdgame;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -26,6 +27,8 @@ public class FirstFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView textViewCurrentNum;
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,6 +60,7 @@ public class FirstFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
