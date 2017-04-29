@@ -9,6 +9,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -38,11 +45,14 @@ public class MainActivity extends AppCompatActivity
     public static int score = -1;
     public static int currentNum = -1;
     public static int goal = -1;
+    public static int highScore = -1;
 
     public static int addMod = -1;
     public static int subtractMod = -1;
     public static int multiplyMod = -1;
     public static int divideMod = -1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,27 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        /*// Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("--");
+        myRef.setValue(Integer.toString(highScore));
 
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("CIS3334", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("CIS3334", "Failed to read value.", error.toException());
+            }
+        });*/
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,17 +106,41 @@ public class MainActivity extends AppCompatActivity
 
     public static void newGame() {
         score++;
+        if (score > highScore) {
+            highScore = score;
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("--");
+            myRef.setValue(Integer.toString(highScore));
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String value = dataSnapshot.getValue(String.class);
+                    Log.d("CIS3334", "Value is: " + value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("CIS3334", "Failed to read value.", error.toException());
+                }
+            });
+        }
+
+
+
         timer = 10;
 
-        goal = ThreadLocalRandom.current().nextInt(35, 40); //random num between 20 and 60
-        currentNum = ThreadLocalRandom.current().nextInt(40, 50); //random num between 10 and 40
+        goal = ThreadLocalRandom.current().nextInt(15, 31); //random num between 15 and 30
+        currentNum = ThreadLocalRandom.current().nextInt(1, 15); //random num between 1 and 14
 
-        addMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
-        subtractMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
-        multiplyMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
-        divideMod = ThreadLocalRandom.current().nextInt(1, 10); //random num between 1 and 9
+        addMod = ThreadLocalRandom.current().nextInt(1, 5); //random num between 1 and 4
+        subtractMod = ThreadLocalRandom.current().nextInt(1, 5); //random num between 1 and 4
+        multiplyMod = ThreadLocalRandom.current().nextInt(2, 5); //random num between 2 and 4
+        divideMod = ThreadLocalRandom.current().nextInt(2, 5); //random num between 2 and 4
     }
-
 
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {

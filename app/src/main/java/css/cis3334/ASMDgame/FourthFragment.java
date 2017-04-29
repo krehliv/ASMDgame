@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -26,6 +28,14 @@ public class FourthFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView textViewCurrentNum;
+    private TextView textViewModifierNum;
+    private TextView textViewTimeNum;
+    private TextView textViewScoreNum;
+    private TextView textViewHighScoreNum;
+    private TextView textViewGoalNum;
+    private Button buttonDivide;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +74,60 @@ public class FourthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fourth, container, false);
+        View inflation = inflater.inflate(R.layout.fragment_fourth, container, false);
+
+        textViewCurrentNum = (TextView) inflation.findViewById(R.id.textViewCurrentNum);
+        textViewModifierNum = (TextView) inflation.findViewById(R.id.textViewModifierNum);
+        textViewTimeNum = (TextView) inflation.findViewById(R.id.textViewTimeNum);
+        textViewScoreNum = (TextView) inflation.findViewById(R.id.textViewScoreNum);
+        textViewHighScoreNum = (TextView) inflation.findViewById(R.id.textViewHighScoreNum);
+        textViewGoalNum = (TextView) inflation.findViewById(R.id.textViewGoalNum);
+        buttonDivide = (Button) inflation.findViewById(R.id.buttonDivide);
+
+        textViewScoreNum.setText(Integer.toString(MainActivity.score));
+        textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
+        textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+        textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+        textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+        textViewModifierNum.setText(Integer.toString(MainActivity.divideMod));
+
+        buttonDivide.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                MainActivity.timer--;
+
+                int modifier = Integer.parseInt(textViewModifierNum.getText().toString());
+
+                MainActivity.currentNum /= modifier;
+
+                textViewTimeNum.setText(Integer.toString((MainActivity.timer)));
+                textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+
+                if (MainActivity.currentNum == MainActivity.goal) {
+                    textViewTimeNum.setText(Integer.toString(10));
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score + 1));
+                    MainActivity.newGame();
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
+                    textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+                    textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+                    textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+                    textViewModifierNum.setText(Integer.toString(MainActivity.divideMod));
+                }
+                if (MainActivity.timer < 0) {
+                    textViewTimeNum.setText(Integer.toString(10));
+                    MainActivity.score = -1;
+                    MainActivity.newGame();
+                    textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
+                    textViewTimeNum.setText(Integer.toString(MainActivity.timer));
+                    textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+                    textViewGoalNum.setText(Integer.toString(MainActivity.goal));
+                    textViewModifierNum.setText(Integer.toString(MainActivity.divideMod));
+                }
+
+            }
+        });
+        return inflation;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

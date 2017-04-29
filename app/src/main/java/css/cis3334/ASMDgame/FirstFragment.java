@@ -33,6 +33,7 @@ public class FirstFragment extends Fragment {
     private TextView textViewModifierNum;
     private TextView textViewTimeNum;
     private TextView textViewScoreNum;
+    private TextView textViewHighScoreNum;
     private TextView textViewGoalNum;
     private Button buttonAdd;
 
@@ -79,15 +80,12 @@ public class FirstFragment extends Fragment {
         textViewModifierNum = (TextView) inflation.findViewById(R.id.textViewModifierNum);
         textViewTimeNum = (TextView) inflation.findViewById(R.id.textViewTimeNum);
         textViewScoreNum = (TextView) inflation.findViewById(R.id.textViewScoreNum);
+        textViewHighScoreNum = (TextView) inflation.findViewById(R.id.textViewHighScoreNum);
         textViewGoalNum = (TextView) inflation.findViewById(R.id.textViewGoalNum);
         buttonAdd = (Button) inflation.findViewById(R.id.buttonAdd);
 
-/*        scoreSet = Integer.toString(MainActivity.score);
-        timerSet = Integer.toString((MainActivity.timer));
-        currentSet = Integer.toString((MainActivity.currentNum));
-        goalSet = Integer.toString((MainActivity.goal));*/
-
         textViewScoreNum.setText(Integer.toString(MainActivity.score));
+        textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
         textViewTimeNum.setText(Integer.toString(MainActivity.timer));
         textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
         textViewGoalNum.setText(Integer.toString(MainActivity.goal));
@@ -98,20 +96,18 @@ public class FirstFragment extends Fragment {
                 MainActivity.timer--;
 
                 int modifier = Integer.parseInt(textViewModifierNum.getText().toString());
-                int current = Integer.parseInt(textViewCurrentNum.getText().toString());
-                int goal = Integer.parseInt(textViewGoalNum.getText().toString());
 
-                current = current + modifier;
-                MainActivity.currentNum = current;
+                MainActivity.currentNum += modifier;
 
                 textViewTimeNum.setText(Integer.toString((MainActivity.timer)));
                 textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
 
-                if (current == goal) {
+                if (MainActivity.currentNum == MainActivity.goal) {
                     textViewTimeNum.setText(Integer.toString(10));
                     textViewScoreNum.setText(Integer.toString(MainActivity.score + 1));
                     MainActivity.newGame();
                     textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
                     textViewTimeNum.setText(Integer.toString(MainActivity.timer));
                     textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
                     textViewGoalNum.setText(Integer.toString(MainActivity.goal));
@@ -122,6 +118,7 @@ public class FirstFragment extends Fragment {
                     MainActivity.score = -1;
                     MainActivity.newGame();
                     textViewScoreNum.setText(Integer.toString(MainActivity.score));
+                    textViewHighScoreNum.setText(Integer.toString(MainActivity.highScore));
                     textViewTimeNum.setText(Integer.toString(MainActivity.timer));
                     textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
                     textViewGoalNum.setText(Integer.toString(MainActivity.goal));
