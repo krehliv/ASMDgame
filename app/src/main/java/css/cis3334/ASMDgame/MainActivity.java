@@ -19,6 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Main Activity. Creates a game with four fragments, one each for addition,
+ * subtraction, multiplication, and division. The user must use the randomly
+ * generated current number and modifier numbers to reach the goal number. Upon
+ * success, the user's score increases by 1. If a new high score is reached,
+ * the number is stored in firebase. The number in firebase is downloaded and
+ * set to the high score upon running the game.
+ */
 public class MainActivity extends AppCompatActivity
         implements FirstFragment.OnFragmentInteractionListener,
         SecondFragment.OnFragmentInteractionListener,
@@ -41,6 +49,9 @@ public class MainActivity extends AppCompatActivity
      */
     private ViewPager mViewPager;
 
+    /**
+     * Initialization of necessary numbers.
+     */
     public static int timer = -1;
     public static int score = -1;
     public static int currentNum = -1;
@@ -59,6 +70,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**
+         * Grabs the previous high score from and sets it equal to the
+         * highScore variable.
+         */
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
         DatabaseReference asmdgamescore = reff.child("asmdgame");
 
@@ -76,30 +91,11 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+        /**
+         * Runs the newGame() method.
+         */
         newGame();
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("asmdgame");
-        //myRef.setValue(Integer.toString(highScore));
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("CIS3334", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("CIS3334", "Failed to read value.", error.toException());
-            }
-        });
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,21 +107,12 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
-
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
     }
 
+    /**
+     * Sets all of the necessary variables to random numbers, increments score,
+     * and resets highScore if necessary.
+     */
     public static void newGame() {
         score++;
         if (score > highScore) {
@@ -133,10 +120,8 @@ public class MainActivity extends AppCompatActivity
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("asmdgame");
             myRef.setValue(Integer.toString(highScore));
-            Log.d("CIS3334", "Value is: " + myRef.toString());
+            Log.d("CIS3334", "New Highscore Value is: " + myRef.toString());
         }
-
-
 
         timer = 10;
 
@@ -148,28 +133,6 @@ public class MainActivity extends AppCompatActivity
         multiplyMod = ThreadLocalRandom.current().nextInt(2, 5); //random num between 2 and 4
         divideMod = ThreadLocalRandom.current().nextInt(2, 5); //random num between 2 and 4
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     public void onFragment1Interaction(Uri uri) {

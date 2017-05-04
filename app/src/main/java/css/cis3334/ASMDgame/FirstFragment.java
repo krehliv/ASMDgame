@@ -74,6 +74,12 @@ public class FirstFragment extends Fragment {
         }
     }
 
+    /**
+     * Creates the View for the first fragment. Upon pressing the button, the
+     * modifier is added to the current value. If the current value now
+     * equals the goal, or if timer drops below zero, newGame() is called.
+     * Otherwise, timer decrements and the game continues.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -137,26 +143,12 @@ public class FirstFragment extends Fragment {
         return inflation;
     }
 
-/*    private void updater() {
+    /** Final failed attempt at refreshing adjacent fragments.
+
+     private void updater() {
         FirstFragment one = (FirstFragment) getFragmentManager().findFragmentById(R.id.frag_one);
         one.textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
-    }*/
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragment1Interaction(uri);
-        }
-    }
-
-    public void updateTextView() {
-        textViewCurrentNum.setText(MainActivity.currentNum);
-    }
-
-    //on button push
-    public void onAddButtonClick(View view) {
-
-    }
+     }*/
 
     @Override
     public void onAttach(Context context) {

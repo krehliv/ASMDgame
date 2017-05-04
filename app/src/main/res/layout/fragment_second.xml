@@ -3,7 +3,8 @@
     android:id="@+id/frag_two"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
     tools:context="css.cis3334.asmdgame.SecondFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -24,12 +25,14 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:textAlignment="center"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,15 +45,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Goal Value:   "
-                android:textSize="36sp" />
+                android:text="@string/goal_value"
+                android:textSize="36sp"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:id="@+id/textViewCurrent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Current Value:   "
+                android:text="@string/current_value"
                 android:textSize="36sp" />
 
             <TextView
@@ -58,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Modifier:   "
+                android:text="@string/modifier"
                 android:textSize="36sp" />
 
             <TextView
@@ -66,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Time Left:   "
+                android:text="@string/time_left"
                 android:textSize="36sp" />
         </LinearLayout>
 
@@ -80,28 +84,28 @@
                 android:id="@+id/textViewGoalNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-1"
+                android:text="@string/_1"
                 android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textViewCurrentNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-1"
+                android:text="@string/_1"
                 android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textViewModifierNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-1"
+                android:text="@string/_1"
                 android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textViewTimeNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-1"
+                android:text="@string/_1"
                 android:textSize="36sp" />
         </LinearLayout>
 
@@ -118,14 +122,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=" "
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/buttonSubtract"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:layout_weight="1"
-            android:text="SUBTRACT"
+            android:text="@string/subtract"
             android:textSize="42sp" />
 
         <TextView
@@ -134,7 +139,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=" "
-            android:textSize="24sp" />/>
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />/>
 
     </LinearLayout>
 
@@ -148,7 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Score: "
+            android:text="@string/score"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -157,7 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="-1"
+            android:text="@string/_1"
             android:textAlignment="center"
             android:textSize="48sp" />/>
 
@@ -166,7 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Highest: "
+            android:text="@string/highest"
             android:textAlignment="center"
             android:textSize="24sp" />/>
 
@@ -175,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="-1"
+            android:text="@string/_1"
             android:textAlignment="center"
             android:textSize="48sp" />/>
 

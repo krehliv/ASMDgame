@@ -8,6 +8,17 @@
     <string name="hello_second_fragment">Subtraction</string>
     <string name="hello_third_fragment">Multiplication</string>
     <string name="hello_fourth_fragment">Division</string>
+    <string name="_1">-1</string>
+    <string name="current_value">Current Value:</string>
+    <string name="goal_value">Goal Value:</string>
+    <string name="highest">Highest:</string>
+    <string name="modifier">Modifier:</string>
+    <string name="subtract">SUBTRACT</string>
+    <string name="score">Score:</string>
+    <string name="time_left">Time Left:</string>
+    <string name="add">ADD</string>
+    <string name="multiply">MULTIPLY</string>
+    <string name="divide">DIVIDE</string>
 
 
 </resources>

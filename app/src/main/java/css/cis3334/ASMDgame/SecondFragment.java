@@ -70,6 +70,12 @@ public class SecondFragment extends Fragment {
         }
     }
 
+    /**
+     * Creates the View for the second fragment. Upon pressing the button, the
+     * modifier is subtracted from the current value. If the current value now
+     * equals the goal, or if timer drops below zero, newGame() is called.
+     * Otherwise, timer decrements and the game continues.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -128,13 +134,6 @@ public class SecondFragment extends Fragment {
             }
         });
         return inflation;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragment2Interaction(uri);
-        }
     }
 
     @Override
