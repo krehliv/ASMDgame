@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_one"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -149,8 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Score: "
-            android:textSize="24sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textViewScoreNum"
@@ -158,8 +159,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="-1"
-            android:textSize="48sp"
-            android:textAlignment="center"/>/>
+            android:textAlignment="center"
+            android:textSize="48sp" />/>
 
         <TextView
             android:id="@+id/textViewHighScore"
@@ -167,8 +168,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Highest: "
-            android:textSize="24sp"
-            android:textAlignment="center"/>/>
+            android:textAlignment="center"
+            android:textSize="24sp" />/>
 
         <TextView
             android:id="@+id/textViewHighScoreNum"
@@ -176,8 +177,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="-1"
-            android:textSize="48sp"
-            android:textAlignment="center"/>/>
+            android:textAlignment="center"
+            android:textSize="48sp" />/>
 
     </LinearLayout>
 

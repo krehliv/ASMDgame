@@ -1,5 +1,6 @@
 package css.cis3334.asmdgame;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 
 
 /**
@@ -29,13 +31,15 @@ public class FirstFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView textViewCurrentNum;
-    private TextView textViewModifierNum;
-    private TextView textViewTimeNum;
-    private TextView textViewScoreNum;
-    private TextView textViewHighScoreNum;
-    private TextView textViewGoalNum;
+    public TextView textViewCurrentNum;
+    public TextView textViewModifierNum;
+    public TextView textViewTimeNum;
+    public TextView textViewScoreNum;
+    public TextView textViewHighScoreNum;
+    public TextView textViewGoalNum;
     private Button buttonAdd;
+
+    private int init = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,6 +77,7 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View inflation = inflater.inflate(R.layout.fragment_first, container, false);
 
@@ -102,6 +107,8 @@ public class FirstFragment extends Fragment {
                 textViewTimeNum.setText(Integer.toString((MainActivity.timer)));
                 textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
 
+                //updater();
+
                 if (MainActivity.currentNum == MainActivity.goal) {
                     textViewTimeNum.setText(Integer.toString(10));
                     textViewScoreNum.setText(Integer.toString(MainActivity.score + 1));
@@ -130,11 +137,20 @@ public class FirstFragment extends Fragment {
         return inflation;
     }
 
+/*    private void updater() {
+        FirstFragment one = (FirstFragment) getFragmentManager().findFragmentById(R.id.frag_one);
+        one.textViewCurrentNum.setText(Integer.toString(MainActivity.currentNum));
+    }*/
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragment1Interaction(uri);
         }
+    }
+
+    public void updateTextView() {
+        textViewCurrentNum.setText(MainActivity.currentNum);
     }
 
     //on button push

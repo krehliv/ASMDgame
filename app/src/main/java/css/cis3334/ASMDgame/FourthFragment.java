@@ -29,12 +29,12 @@ public class FourthFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView textViewCurrentNum;
-    private TextView textViewModifierNum;
-    private TextView textViewTimeNum;
-    private TextView textViewScoreNum;
-    private TextView textViewHighScoreNum;
-    private TextView textViewGoalNum;
+    public TextView textViewCurrentNum;
+    public TextView textViewModifierNum;
+    public TextView textViewTimeNum;
+    public TextView textViewScoreNum;
+    public TextView textViewHighScoreNum;
+    public TextView textViewGoalNum;
     private Button buttonDivide;
 
     private OnFragmentInteractionListener mListener;

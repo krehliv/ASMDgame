@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     public static int score = -1;
     public static int currentNum = -1;
     public static int goal = -1;
-    public static int highScore = -1;
+    public static int highScore;
 
     public static int addMod = -1;
     public static int subtractMod = -1;
@@ -59,22 +59,28 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference asmdgamescore = reff.child("asmdgame");
+
+        asmdgamescore.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String highScoreString = dataSnapshot.getValue(String.class);
+                Log.d("CIS3334", "Highscore value is: " + highScoreString);
+                highScore = Integer.parseInt(highScoreString);
+                //newGame();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         newGame();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        /*// Write a message to the database
+        // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("--");
-        myRef.setValue(Integer.toString(highScore));
+        DatabaseReference myRef = database.getReference("asmdgame");
+        //myRef.setValue(Integer.toString(highScore));
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -91,7 +97,23 @@ public class MainActivity extends AppCompatActivity
                 // Failed to read value
                 Log.w("CIS3334", "Failed to read value.", error.toException());
             }
-        });*/
+        });
+
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -109,24 +131,9 @@ public class MainActivity extends AppCompatActivity
         if (score > highScore) {
             highScore = score;
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("--");
+            DatabaseReference myRef = database.getReference("asmdgame");
             myRef.setValue(Integer.toString(highScore));
-
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    String value = dataSnapshot.getValue(String.class);
-                    Log.d("CIS3334", "Value is: " + value);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w("CIS3334", "Failed to read value.", error.toException());
-                }
-            });
+            Log.d("CIS3334", "Value is: " + myRef.toString());
         }
 
 
